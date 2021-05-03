@@ -35,12 +35,15 @@ int kmp_matcher(char *t, char *p)
 
     int q = 0;
 
+    // scan linear
     for (int i = 0; i < n; i++)
     {
+        // prox char não da match -> escrita na memoria
         while (q > 0 && (p[q] != t[i]))
         {
             q = prefix[q - 1];
         }
+        ///
         if (p[q] == t[i])
         {
             q++;
@@ -56,8 +59,8 @@ int kmp_matcher(char *t, char *p)
 
 int main()
 {
-    char *text = "adsadstestestestes";
-    char *pattern = "teste";
+    char *text = "A string-matching algorithm wants to find the starting index m in string S[] that matches the search word W[]. The most straightforward algorithm, known as the Brute-force or Naive algorithm, is to look for a word match at each index m, i.e. the position in the string being searched that corresponds to the character S[m]. At each position m the algorithm first checks for equality of the first character in the word being searched, i.e. S[m] =? W[0]. If a match is found, the algorithm tests the other characters in the word being searched by checking successive values of the word position index, i. The algorithm retrieves the character W[i] in the word being searched and checks for equality of the expression S[m+i] =? W[i]. If all successive characters match in W at position m, then a match is found at that position in the search string. If the index m reaches the end of the string then there is no match, in which case the search is said to fail. ";
+    char *pattern = "characters";
     int offset = kmp_matcher(text, pattern);
     printf("offset is %d\n", offset);
     return 0;
